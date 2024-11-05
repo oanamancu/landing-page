@@ -22,7 +22,7 @@
  * Define Global Variables
  * 
 */
-
+const sections = document.querySelectorAll('section');
 
 /**
  * End Global Variables
@@ -43,7 +43,7 @@
 function buildNav() {
     const ul = document.querySelector('#navbar__list');
 
-    document.querySelectorAll('section').forEach ( section => {
+    sections.forEach ( section => {
         const sectionNumber = section.id.charAt(section.id.length-1); 
         const li = document.createElement('li');
         li.classList.add('navbar__menu');
@@ -59,6 +59,21 @@ function buildNav() {
 }
 
 // Add class 'active' to section when near top of viewport
+function makeActive(){
+    for (const section of sections) {
+        const box = section.getBoundingClientRect();
+        //Find a value that works best, but 150 seems to be a good start.
+        if (box.top <= 150 && box.bottom >= 150) {
+            //apply active state on current section and corresponding Nav link
+            if (!section.classList.contains('awesome-active-class') ) {
+                section.classList.add('awesome-active-class');
+            }
+        } else {
+            //Remove active state from other section and corresponding Nav link
+            section.classList.remove('awesome-active-class');
+        }
+     }
+}
 
 
 // Scroll to anchor ID using scrollTO event
@@ -82,8 +97,6 @@ function scrollToAnchor(event) {
 
 // Build menu 
 buildNav();
-
-// Scroll to section on link click
 
 // Set sections as active
 document.addEventListener("scroll", function() { makeActive();});
