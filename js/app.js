@@ -49,10 +49,10 @@ function buildNav() {
         li.setAttribute('id', `li${sectionNumber}`);
         const menuLink = document.createElement('a');
         menuLink.classList.add('navbar__menu', 'menu__link');
-        menuLink.textContent = `Section ${sectionNumber}`;
+        menuLink.innerHTML = `<em>Section ${sectionNumber}</em>`;
         i === 0 ? menuLink.classList.add("active__link") : "";
         li.appendChild(menuLink);
-        ul.appendChild(li);
+        ul.append(li);
     });
 
     ul.addEventListener('click', scrollToAnchor);
