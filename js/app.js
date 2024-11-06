@@ -49,7 +49,7 @@ function buildNav() {
         li.setAttribute('id', `li${sectionNumber}`);
         const menuLink = document.createElement('a');
         menuLink.classList.add('navbar__menu', 'menu__link');
-        menuLink.innerHTML = `<em>Section ${sectionNumber}</em>`;
+        menuLink.innerHTML = `Section ${sectionNumber}`;
         i === 0 ? menuLink.classList.add("active__link") : "";
         li.appendChild(menuLink);
         ul.append(li);
@@ -83,6 +83,7 @@ function makeActive() {
 function scrollToAnchor(event) {
     event.preventDefault();
     const target = event.target.parentElement;
+    console.log(target.id + " id");
     if (target.nodeName === 'LI') {
         const section = document.querySelector(`#section${target.id.charAt(target.id.length-1)}`);
         window.scrollTo({
